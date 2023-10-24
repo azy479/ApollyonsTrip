@@ -45,6 +45,8 @@ main {
 }
 
 .product {
+    background-color: #333; /* Dark grey background color */
+    color: #fff; /* White text color */
     margin: 10px;
     padding: 10px;
     border: 1px solid #ddd;
@@ -70,13 +72,15 @@ main {
     color: #ff6600;
 }
 
-.product button {
-    background-color: #ff6600;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
+.product a { /* Style the link within the product box */
+    text-decoration: none;
+    color: #fff; /* White link color */
 }
+
+.product a:hover { /* Change link color on hover */
+    color: #ff6600; /* Orange link color on hover */
+}
+
 .cart-button {
     background-color: #ff6600;
     color: #fff;
