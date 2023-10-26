@@ -1,0 +1,60 @@
+
+*****JAVASCRIPT*****
+
+
+let request = require('request');
+
+    // === Define headers ===
+    let headers = {
+        'Content-Type' : 'application/json',
+        'X-API-KEY' : '{{apiKey}}'
+    };
+
+    // === Set-up quote request ===
+    let orderUrl = 'https://order.gelatoapis.com/v4/orders';
+    let orderJson = {
+        "orderType": "order",
+        "orderReferenceId": "{{myOrderId}}",
+        "customerReferenceId": "{{myCustomerId}}",
+        "currency": "USD",
+        "items": [
+            {
+                "itemReferenceId": "{{myItemId1}}",
+                "productUid": "apparel_product_gca_t-shirt_gsc_crewneck_gcu_unisex_gqa_classic_gsi_s_gco_white_gpr_4-4",
+                "files": [
+                    {
+                        "type": "default",
+                        "url": "https://s3-eu-west-1.amazonaws.com/developers.gelato.com/product-examples/test_print_job_BX_4-4_hor_none.pdf"
+                    },
+                    {
+                        "type":"back",
+                        "url": "https://s3-eu-west-1.amazonaws.com/developers.gelato.com/product-examples/test_print_job_BX_4-4_hor_none.pdf"
+                    }
+                ],
+                "quantity": 1
+            }
+        ],        
+        "shipmentMethodUid": "express",
+        "shippingAddress": {
+            "companyName": "Example",
+            "firstName": "Paul",
+            "lastName": "Smith",
+            "addressLine1": "451 Clarkson Ave",
+            "addressLine2": "Brooklyn",
+            "state": "NY",
+            "city": "New York",
+            "postCode": "11203",
+            "country": "US",
+            "email": "apisupport@gelato.com",
+            "phone": "123456789"
+        }
+    };
+
+    // === Send order request ===
+    request.post({
+        url:        orderUrl,
+        headers:    headers,
+        body:       JSON.stringify(orderJson)
+    }, function(error, response, body){
+        console.log(body);
+    });
